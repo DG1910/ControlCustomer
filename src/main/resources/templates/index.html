@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" >
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>INICIO</h1>
+        <a th:href="@{/agregar}"    >Crear Customer</a>
+        <br>
+        <div th:if="${customers != null   and   !customers.empty }"     >
+
+            <table  border="1"  >
+                <tr>
+                    <th>Name </th>
+                    <th>Phone </th>
+                    <th>Email </th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+                <tr th:each="customer : ${customers}"     >
+                    <td  th:text="${customer.name}"      > Mostrar nombre  </td>
+                    <td  th:text="${customer.phone}"      > Mostrar telefono  </td>
+                    <td  th:text="${customer.email}"      > Mostrar email  </td>
+                    <td > <a th:href="@{/editar/} + ${customer.id} "       /> Editar  </td>
+                    <td > <a th:href="@{/eliminar/} + ${customer.id} "         /> Eliminar   </td>
+                </tr>
+                
+            </table>
+
+        </div>
+    <div  th:if="${customers == null  or customers.empty }"   >
+    
+        La lista de customers está vacía
+    
+    </div>
+    </body>
+</html>
